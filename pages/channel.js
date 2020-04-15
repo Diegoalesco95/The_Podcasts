@@ -25,12 +25,20 @@ function Channel({ channel, audioClips, series }) {
         </div>
       )}
 
-      <h2>Últimos Podcasts</h2>
-      {audioClips.map((clip) => (
-        <div className='podcast' key={clip.id}>
-          {clip.title}
-        </div>
-      ))}
+      <h2>Ultimos Podcasts</h2>
+      <div className='last_podcasts'>
+        {audioClips.map((clip) => (
+          <Link href={`/podcast?id=${clip.id}`} key={clip.id}>
+            <div className='podcast_container'>
+              <a className='podcast'>
+                <h3>{clip.title}</h3>
+                <img src='/play.png' alt='Play Icon' />
+                <div className='meta'>{Math.ceil(clip.duration / 60)} minutes</div>
+              </a>
+            </div>
+          </Link>
+        ))}
+      </div>
 
       <style jsx global>{`
         body {
@@ -93,21 +101,46 @@ function Channel({ channel, audioClips, series }) {
           text-align: center;
           color: #dfe6e9;
         }
-        .podcast {
+        .last_podcasts {
+          display: grid;
+          grid-gap: 15px;
+          padding: 15px;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        .podcast_container {
           display: block;
           text-decoration: none;
           color: #dfe6e9;
-          padding: 15px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-          cursor: pointer;
+          padding: 20px 5px;
+          margin: 5px;
+          box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
         }
-        .podcast:hover {
-          color: #8756ca;
+        .podcast {
+          display: grid;
+          grid-template-areas:
+            'title icon'
+            'duration icon';
+          grid-gap: 5px;
+          grid-template-columns: 0.8fr 0.2fr;
         }
         .podcast h3 {
           margin: 0;
+          grid-area: title;
+          cursor: pointer;
+        }
+        .podcast h3:hover {
+          color: #8756ca;
+        }
+        .podcast img {
+          grid-area: icon;
+          text-align: center;
+          margin: auto;
+          width: 50%;
+          cursor: pointer;
         }
         .podcast .meta {
+          grid-area: duration;
+          text-align: center;
           color: #666;
           margin-top: 0.5em;
           font-size: 0.8em;
