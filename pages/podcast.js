@@ -1,11 +1,10 @@
 import fetch from 'isomorphic-fetch'
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 function Podcast({ clip }) {
   return (
-    <>
-      <header>The Podcasts</header>
-
+    <Layout title={`The Podcasts - ${clip.title}`}>
       <div className='modal'>
         <div className='clip'>
           <nav>
@@ -92,14 +91,7 @@ function Podcast({ clip }) {
           z-index: 99999;
         }
       `}</style>
-
-      <style jsx global>{`
-        body {
-          margin: 0;
-          font-family: system-ui;
-        }
-      `}</style>
-    </>
+    </Layout>
   )
 }
 
