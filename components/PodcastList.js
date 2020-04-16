@@ -26,11 +26,11 @@ export default class PodcastList extends React.Component {
 
         <style jsx>{`
           h2 {
-            padding: 5px;
+            padding: 15px;
+            margin: 15px;
             font-size: 1.2em;
             font-weight: 600;
             text-transform: uppercase;
-            margin: 0;
             color: #dfe6e9;
           }
           h3 {
@@ -69,7 +69,7 @@ export default class PodcastList extends React.Component {
             right: 0;
             bottom: 0;
             left: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+            background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.3) 100%);
             grid-template-areas: 'title icon';
             grid-gap: 0px;
             grid-template-columns: 0.7fr 0.3fr;
@@ -93,7 +93,7 @@ export default class PodcastList extends React.Component {
             align-content: center;
             text-align: center;
             color: #666;
-            margin: 25% 10px;
+            margin: 10% 10px;
             font-size: 1.3em;
           }
           .info span {

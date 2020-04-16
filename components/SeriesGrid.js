@@ -6,8 +6,6 @@ export default class ChannelGrid extends React.Component {
 
     return (
       <>
-        <h1>{channel.title}</h1>
-
         {series.length > 0 && (
           <div className='series'>
             <h2>Series</h2>
@@ -48,17 +46,12 @@ export default class ChannelGrid extends React.Component {
           box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
           width: 100%;
         }
-        h1 {
-          font-weight: 600;
-          padding: 15px;
-          color: #dfe6e9;
-        }
         h2 {
-          padding: 5px;
+          padding: 15px;
+          margin: 15px;
           font-size: 1.2em;
           font-weight: 600;
           text-transform: uppercase;
-          margin: 0;
           color: #dfe6e9;
         }
             }
