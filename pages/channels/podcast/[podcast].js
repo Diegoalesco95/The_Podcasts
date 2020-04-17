@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import Link from 'next/link'
-import Layout from '../components/Layout'
+import Layout from '../../../components/Layout'
+import slug from '../../../helpers/slug'
 
 function Podcast({ clip }) {
   return (
@@ -8,7 +9,10 @@ function Podcast({ clip }) {
       <div className='modal'>
         <div className='clip'>
           <nav>
-            <Link href={`/channel?id=${clip.channel.id}`}>
+            <Link
+              href={`../[channel]?id=${clip.channel.id}`}
+              as={`../${slug(clip.channel.title)}?id=${clip.channel.id}`}
+              key={clip.channel.id}>
               <a className='close'>&lt; Volver</a>
             </Link>
           </nav>

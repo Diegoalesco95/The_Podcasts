@@ -1,29 +1,27 @@
 import Link from 'next/link'
+import slug from '../helpers/slug'
 
-export default class ChannelGrid extends React.Component {
-  render() {
-    const { series, channel } = this.props
-
-    return (
-      <>
-        {series.length > 0 && (
-          <div className='series'>
-            <h2>Series</h2>
-            <div className='channels'>
-              {series.map((serie) => (
-                <Link href={`/channel?id=${serie.id}`} key={serie.id}>
-                  <a className='channel'>
-                    <img src={serie.urls.logo_image.original} alt='Logo Serie' />
-                    <h3>{serie.title}</h3>
-                  </a>
-                </Link>
-              ))}
-            </div>
+function SeriesGrid({ series }) {
+  return (
+    <>
+      {series.length > 0 && (
+        <div className='series'>
+          <h2>Series</h2>
+          <div className='channels'>
+            {series.map((serie) => (
+              <Link href={`[channel]?id=${serie.id}`} as={`${slug(serie.title)}?id=${serie.id}`} key={serie.id}>
+                <a className='channel'>
+                  <img src={serie.urls.logo_image.original} alt='Logo Serie' />
+                  <h3>{serie.title}</h3>
+                </a>
+              </Link>
+            ))}
           </div>
-        )}
+        </div>
+      )}
 
-        <style jsx>
-          {`
+      <style jsx>
+        {`
 					.series {
 						padding: 0 15px
 					}
@@ -56,8 +54,9 @@ export default class ChannelGrid extends React.Component {
         }
             }
           `}
-        </style>
-      </>
-    )
-  }
+      </style>
+    </>
+  )
 }
+
+export default SeriesGrid

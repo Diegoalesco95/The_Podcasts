@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch'
-import Layout from '../components/Layout'
-import SeriesGrid from '../components/SeriesGrid'
-import PodcastList from '../components/PodcastList'
-import Error from './_error'
+import Layout from '../../components/Layout'
+import SeriesGrid from '../../components/SeriesGrid'
+import PodcastList from '../../components/PodcastList'
+import Error from '../_error'
 
 const API = 'https://api.audioboom.com/channels'
 
