@@ -1,21 +1,34 @@
+import { useState } from 'react'
 import fetch from 'isomorphic-fetch'
 import Layout from '../../components/Layout'
 import SeriesGrid from '../../components/SeriesGrid'
 import PodcastList from '../../components/PodcastList'
 import Error from '../_error'
+import { useRouter } from 'next/router'
 
 const API = 'https://api.audioboom.com/channels'
 
 function Channel({ channel, audioClips, series, statusCode }) {
+  const [openPodcast, setPodcast] = useState(null)
+  const router = useRouter()
+
+  const setOpenPodcast = (e, podcast) => {
+    e.preventDefault()
+    setPodcast(podcast)
+  }
+
   if (statusCode !== 200) {
     return <Error statusCode={statusCode} />
   }
   return (
     <Layout title={`The Podcasts - ${channel.title}`}>
       <div className='banner' style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} />
+
+      {openPodcast && <div>Hay un podcast abierto</div>}
+
       <h1>{channel.title}</h1>
       <SeriesGrid series={series} channel={channel} />
-      <PodcastList audioClips={audioClips} />
+      <PodcastList audioClips={audioClips} onClickPodcast={setOpenPodcast} />
 
       <style jsx>{`
         .banner {
