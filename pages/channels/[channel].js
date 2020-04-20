@@ -3,18 +3,22 @@ import fetch from 'isomorphic-fetch'
 import Layout from '../../components/Layout'
 import SeriesGrid from '../../components/SeriesGrid'
 import PodcastList from '../../components/PodcastList'
+import PodcastPlayer from '../../components/PodcastPlayer'
 import Error from '../_error'
-import { useRouter } from 'next/router'
 
 const API = 'https://api.audioboom.com/channels'
 
 function Channel({ channel, audioClips, series, statusCode }) {
-  const [openPodcast, setPodcast] = useState(null)
-  const router = useRouter()
+  const [openPodcast, setOpenPodcast] = useState(null)
 
-  const setOpenPodcast = (e, podcast) => {
+  const setPodcast = (e, podcast) => {
     e.preventDefault()
-    setPodcast(podcast)
+    setOpenPodcast(podcast)
+  }
+
+  const closePodcast = (e) => {
+    e.preventDefault()
+    setOpenPodcast(null)
   }
 
   if (statusCode !== 200) {
@@ -24,11 +28,15 @@ function Channel({ channel, audioClips, series, statusCode }) {
     <Layout title={`The Podcasts - ${channel.title}`}>
       <div className='banner' style={{ backgroundImage: `url(${channel.urls.banner_image.original})` }} />
 
-      {openPodcast && <div>Hay un podcast abierto</div>}
+      {openPodcast && (
+        <div className='modal'>
+          <PodcastPlayer clip={openPodcast} onClose={closePodcast} />
+        </div>
+      )}
 
       <h1>{channel.title}</h1>
       <SeriesGrid series={series} channel={channel} />
-      <PodcastList audioClips={audioClips} onClickPodcast={setOpenPodcast} />
+      <PodcastList audioClips={audioClips} handleClick={setPodcast} />
 
       <style jsx>{`
         .banner {
@@ -43,6 +51,15 @@ function Channel({ channel, audioClips, series, statusCode }) {
           padding: 15px;
           margin: 15px;
           color: #dfe6e9;
+        }
+        .modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 99999;
+          background-color: red;
         }
       `}</style>
     </Layout>

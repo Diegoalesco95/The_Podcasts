@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import slug from '../helpers/slug'
 
-function PodcastList({ audioClips, onClickPodcast }) {
+function PodcastList({ audioClips, handleClick }) {
   return (
     <>
       <h2>Últimos Podcasts</h2>
       <div className='last_podcasts'>
         {audioClips.map((clip) => (
           <Link href={`podcast/[podcast]?id=${clip.id}`} as={`podcast/${slug(clip.title)}?id=${clip.id}`} key={clip.id}>
-            <a className='podcast_container' onClick={() => onClickPodcast((openPodcast = true))}>
+            <a className='podcast_container' onClick={(e) => handleClick(e, clip)}>
               <img src={clip.urls.image || clip.channel.urls.logo_image.original} alt='cover-audio' className='clip-image' />
               <div className='podcast'>
                 <div className='info'>
