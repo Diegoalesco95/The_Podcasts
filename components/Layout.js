@@ -19,6 +19,12 @@ const Layout = ({ children, title }) => {
 
       {children}
 
+      <footer>
+        <Link href='/about'>
+          <a>About - 2020</a>
+        </Link>
+      </footer>
+
       <style jsx global>{`
         body {
           margin: 0;
@@ -110,7 +116,8 @@ const Layout = ({ children, title }) => {
       `}</style>
 
       <style jsx>{`
-        header {
+        header,
+        footer {
           color: #dfe6e9;
           background: #8756ca;
           padding: 15px;
@@ -122,6 +129,11 @@ const Layout = ({ children, title }) => {
           text-transform: uppercase;
           font-weight: 700;
           font-size: 1.5em;
+        }
+        footer a {
+          color: #dfe6e9;
+          text-decoration: none;
+          font-size: 0.8em;
         }
       `}</style>
     </>
