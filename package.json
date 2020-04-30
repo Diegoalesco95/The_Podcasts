@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "Diego Osorio <Diegoalesco95@hotmail.com>",
@@ -17,6 +19,8 @@
     "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "slugify": "^1.4.0"
-  }
+    "slugify": "^1.4.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
