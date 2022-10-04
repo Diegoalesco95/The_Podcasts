@@ -6,17 +6,21 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "keywords": [],
   "author": "Diego Osorio <Diegoalesco95@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
-    "next": "^9.3.4",
+    "isomorphic-fetch": "^3.0.0",
+    "next": "^11.1.0",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "slugify": "^1.4.0"
-  }
+    "slugify": "^1.4.0",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
